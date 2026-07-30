@@ -3,7 +3,34 @@
     padding:0;
     box-sizing:border-box;
 }
+.header img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    border-radius:10px;
+.header{
+    text-align:center;
+    margin-bottom:15px;
+}
 
+.header h2{
+    margin-top:8px;
+    font-size:20px;
+}
+
+.header p{
+    font-size:14px;
+    color:#666;
+}
+}
+@media(max-width:480px){
+
+.header img{
+    width:45px;
+    height:45px;
+}
+
+}
 body{
     font-family:Arial,sans-serif;
     background:#f4f6f8;
