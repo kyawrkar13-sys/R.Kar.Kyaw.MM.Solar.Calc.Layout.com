@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PV Setting</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+
+<h2>⚙️ System Setting</h2>
+
+
+<label>
+Project Name
+</label>
+
+<input 
+id="project"
+type="text"
+placeholder="Example: Rkar Kyaw Coding Solar">
+
+
+<label>
+Client Name
+</label>
+
+<input 
+id="client"
+type="text"
+placeholder="Client Name">
+
+
+
+<label>
+System Type
+</label>
+
+<select id="system">
+
+<option>
+On Grid
+</option>
+
+<option>
+Hybrid
+</option>
+
+<option>
+Off Grid
+</option>
+
+</select>
+
+
+
+
+<label>
+PV Module Brand
+</label>
+
+<input 
+id="panel"
+type="text"
+placeholder="Example: Jinko 650W">
+
+
+
+<label>
+Inverter Brand
+</label>
+
+<input 
+id="inverter"
+type="text"
+placeholder="Example: Sigenergy / Dyness">
+
+
+
+<label>
+Sigenergy / Dyness
+</label>
+
+<input 
+id="battery"
+type="text"
+placeholder="Example: LFP4 Battery">
+
+
+
+
+
+<button onclick="saveSetting()">
+
+Save Setting
+
+</button>
+
+
+
+<div class="result" id="settingResult">
+
+No Data
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="menu">
+
+
+<a href="index.html">
+<div>
+☀️
+<br>
+Home
+</div>
+</a>
+
+
+<a href="design.html">
+<div>
+📐
+<br>
+Design
+</div>
+</a>
+
+
+<a href="battery.html">
+<div>
+🔋
+<br>
+Battery
+</div>
+</a>
+
+
+<a href="setting.html">
+<div>
+⚙️
+<br>
+Setting
+</div>
+</a>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function saveSetting(){
+
+
+let data={
+
+project:
+document.getElementById("project").value,
+
+
+client:
+document.getElementById("client").value,
+
+
+system:
+document.getElementById("system").value,
+
+
+panel:
+document.getElementById("panel").value,
+
+
+inverter:
+document.getElementById("inverter").value,
+
+
+battery:
+document.getElementById("battery").value
+
+
+};
+
+
+
+localStorage.setItem(
+"systemSetting",
+JSON.stringify(data)
+);
+
+
+
+showSetting();
+
+
+}
+
+
+
+
+function showSetting(){
+
+
+let data =
+JSON.parse(
+localStorage.getItem("systemSetting")
+);
+
+
+
+if(data){
+
+
+document.getElementById("settingResult").innerHTML = `
+
+
+<b>Saved System</b>
+
+<br><br>
+
+
+Project :
+${data.project}
+
+<br>
+
+Client :
+${data.client}
+
+<br>
+
+System :
+${data.system}
+
+<br>
+
+PV :
+${data.panel}
+
+<br>
+
+Inverter :
+${data.inverter}
+
+<br>
+
+Battery :
+${data.battery}
+
+
+`;
+
+}
+
+
+}
+
+
+
+showSetting();
+
+
+
+</script>
+
+
+</body>
+
+</html>

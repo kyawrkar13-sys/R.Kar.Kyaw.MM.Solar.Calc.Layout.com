@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Battery Design</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+
+<h2>🔋 Battery Design</h2>
+
+
+<label>Load Power (kW)</label>
+<input 
+id="load"
+type="number"
+value=" ">
+
+
+<label>Backup Time (Hour)</label>
+<input 
+id="hour"
+type="number"
+value=" ">
+
+
+<label>Battery Voltage (V)</label>
+<select id="voltage">
+
+<option value="48">
+48V
+</option>
+
+<option value="96">
+96V
+</option>
+
+<option value="400">
+400V HV
+</option>
+
+</select>
+
+
+
+<label>
+Battery DoD (%)
+</label>
+
+<input 
+id="dod"
+type="number"
+value="90">
+
+
+
+<button onclick="batteryCalc()">
+
+Calculate Battery
+
+</button>
+
+
+
+<div class="result" id="batteryResult">
+
+Battery Result
+
+</div>
+
+
+</div>
+
+
+
+<div class="menu">
+
+
+<a href="index.html">
+<div>
+☀️
+<br>
+Home
+</div>
+</a>
+
+
+<a href="design.html">
+<div>
+📐
+<br>
+Design
+</div>
+</a>
+
+
+<a href="battery.html">
+<div>
+🔋
+<br>
+Battery
+</div>
+</a>
+
+
+<a href="setting.html">
+<div>
+⚙️
+<br>
+Setting
+</div>
+</a>
+
+
+</div>
+
+
+
+
+<script>
+
+
+function batteryCalc(){
+
+
+let load =
+Number(document.getElementById("load").value);
+
+
+let hour =
+Number(document.getElementById("hour").value);
+
+
+let voltage =
+Number(document.getElementById("voltage").value);
+
+
+let dod =
+Number(document.getElementById("dod").value);
+
+
+
+let energy =
+load * hour;
+
+
+let battery =
+energy / (dod/100);
+
+
+
+let current =
+(battery*1000)/voltage;
+
+
+
+document.getElementById("batteryResult").innerHTML = `
+
+
+<b>🔋 Battery Result</b>
+
+<br><br>
+
+
+Load :
+${load} kW
+
+
+<br>
+
+
+Backup Time :
+${hour} Hour
+
+
+<br><br>
+
+
+Required Battery Energy :
+
+<b>
+${battery.toFixed(2)} kWh
+</b>
+
+
+<br><br>
+
+
+Battery Voltage :
+${voltage} V
+
+
+<br>
+
+
+Approx Battery Current :
+
+${current.toFixed(1)} Ah
+
+
+`;
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

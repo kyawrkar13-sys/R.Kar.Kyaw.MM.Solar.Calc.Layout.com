@@ -1,0 +1,117 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f8;
+    padding:20px;
+    padding-bottom:90px;
+}
+
+.card{
+    max-width:450px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-top:12px;
+    font-weight:bold;
+}
+
+input,
+select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:20px;
+    background:#198754;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#157347;
+}
+
+.result{
+    margin-top:20px;
+    background:#eef7ff;
+    border-radius:10px;
+    padding:15px;
+}
+
+#layout{
+    margin-top:20px;
+}
+
+.north,
+.road{
+    text-align:center;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+#site{
+    display:grid;
+    gap:2px;
+    background:#ddd;
+    padding:10px;
+    border-radius:10px;
+}
+
+.panel{
+    background:#2196f3;
+    color:#fff;
+    text-align:center;
+    padding:8px 0;
+    font-size:11px;
+    border-radius:3px;
+}
+
+.menu{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#fff;
+    display:flex;
+    justify-content:space-around;
+    border-top:1px solid #ddd;
+    padding:10px 0;
+    box-shadow:0 -2px 10px rgba(0,0,0,.15);
+}
+
+.menu a{
+    color:#555;
+    text-decoration:none;
+    text-align:center;
+    font-size:12px;
+}
+
+.menu a:hover{
+    color:#198754;
+}
