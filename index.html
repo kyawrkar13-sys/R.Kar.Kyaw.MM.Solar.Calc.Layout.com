@@ -2,157 +2,239 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 <title>PV Layout Calculator</title>
-<link rel="icon" type="image/png" href="/icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="icon-192.png">     
-<link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icon.png">
-<link rel="stylesheet" href="style.css">
+<link rel="icon"
+      type="image/png"
+      href="/icon.png">
+<link rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="icon-192.png">
+<link rel="manifest"
+      href="/manifest.json">
+<link rel="apple-touch-icon"
+      href="/icon.png">
+<link rel="stylesheet"
+      href="style.css">
 </head>
-
 <body>
-<!-- ☀️ Solar Rough Calculation -->
- <div class="card">
-
+<!-- ================================= -->
+<!-- ☀️ SOLAR ROUGH CALCULATION -->
+<!-- ================================= -->
+<div class="card">
     <div class="header">
         <img src="logo.png">
-        <h2>☀️ Solar Rough Calculation</h2>
+        <h2>
+            ☀️ Solar Rough Calculation
+        </h2>
     </div>
-
-    <label>Total Load (kW)</label>
-    <input type="number" id="totalLoad" placeholder="Enter total load">
-
-    <label>Solar Panel Watt</label>
+    <label>
+        Total Load (kW)
+    </label>
+    <input
+        type="number"
+        id="totalLoad"
+        placeholder="Enter total load"
+        step="0.01"
+    >
+    <label>
+        Solar Panel Watt
+    </label>
     <select id="solarWatt">
-        <option value="615">615 W</option>
-        <option value="650" selected>650 W</option>
-        <option value="700">700 W</option>
-        <option value="720">720 W</option>
-        <option value="750">750 W</option>
+        <option value="615">
+            615 W
+        </option>
+        <option value="650" selected>
+            650 W
+        </option>
+        <option value="700">
+            700 W
+        </option>
+        <option value="720">
+            720 W
+        </option>
+        <option value="750">
+            750 W
+        </option>
     </select>
-
-    <label>Efficiency</label>
+    <label>
+        Efficiency
+    </label>
     <select id="solarEfficiency">
-        <option value="0.80">80%</option>
-        <option value="0.70">70%</option>
+        <option value="0.80" selected>
+            80%
+        </option>
+        <option value="0.70">
+            70%
+        </option>
     </select>
-
     <button id="solarCalculateBtn">
         ☀️ Calculate
     </button>
-
-    <div id="solarOutput" class="result">
+    <div id="solarOutput"
+         class="result">
         Result will show here
-    
-    
+    </div>
 </div>
-
-
-<!-- 📐 PV Layout Calculator -->
+<!-- ================================= -->
+<!-- 📐 PV LAYOUT CALCULATOR -->
+<!-- ================================= -->
 <div class="card">
-
     <div class="header">
         <img src="logo.png">
-        <h2>🧮 Rkar Kyaw's Solar Calculation</h2>
+        <h2>
+            🧮 Rkar Kyaw's Solar Calculation
+        </h2>
+    </div>
+    <label>
+        Site Length (m)
+    </label>
+    <input
+        type="number"
+        id="length"
+        placeholder="Enter site length"
+        step="0.01"
+    >
+    <label>
+        Site Width (m)
+    </label>
+    <input
+        type="number"
+        id="width"
+        placeholder="Enter site width"
+        step="0.01"
+    >
+    <label>
+        Setback Distance (m)
+    </label>
+    <input
+        type="number"
+        id="setback"
+        value="0"
+        step="0.01"
+    >
+    <label>
+        Panel Watt
+    </label>
+    <select id="watt">
+        <option value="615">
+            615 W
+        </option>
+        <option value="650" selected>
+            650 W
+        </option>
+        <option value="700">
+            700 W
+        </option>
+        <option value="720">
+            720 W
+        </option>
+        <option value="750">
+            750 W
+        </option>
+    </select>
+    <label>
+        Panel Length (m)
+    </label>
+    <input
+        type="number"
+        id="pl"
+        value="2.4"
+        step="0.01"
+    >
+    <label>
+        Panel Width (m)
+    </label>
+    <input
+        type="number"
+        id="pw"
+        value="1.3"
+        step="0.01"
+    >
+    <label>
+        Row Spacing (m)
+    </label>
+    <input
+        type="number"
+        id="row"
+        value="0"
+        step="0.01"
+    >
+    <label>
+        Column Spacing (m)
+    </label>
+    <input
+        type="number"
+        id="column"
+        value="0"
+        step="0.01"
+    >
+    <button onclick="calculate()">
+        📐 Calculate
+    </button>
+    <hr>
+    <h2>
+        📐 PV Layout Design
+    </h2>
 </div>
-    <label>Site Length (m)</label>
-<input type="number" id="length" placeholder=" ">
-
-<label>Site Width (m)</label>
-<input type="number" id="width" placeholder=" ">
-
-<label>Setback Distance (m)</label>
-<input type="number" id="setback" value=" ">
-
-<label>Panel Watt</label>
-<select id="watt">
-    <option value="615">615 W</option>
-    <option value="650" selected>650 W</option>
-    <option value="700">700 W</option>
-    <option value="720">720 W</option>
-    <option value="750">750 W</option>
-</select>
-
-<label>Panel Length (m)</label>
-<input type="number" id="pl" value="2.4">
-
-<label>Panel Width (m)</label>
-<input type="number" id="pw" value="1.3">
-
-<label>Row Spacing (m)</label>
-<input type="number" id="row" value=" ">
-
-<label>Column Spacing (m)</label>
-<input type="number" id="column" value=" ">
-
-<button onclick="calculate()">Calculate</button>
-
-<hr>
-
-<h2>📐 PV Layout Design</h2>
-
-
-</div>
-
+<!-- ================================= -->
+<!-- 📐 PV LAYOUT -->
+<!-- ================================= -->
 <div id="layout">
-
-<div class="north">
-
+    <div class="north">
+        North ↑
+    </div>
+    <div id="site">
+    </div>
+    <div class="road">
+        Road
+    </div>
 </div>
-
-<div id="site"></div>
-
-<div class="road">
-
+<!-- ================================= -->
+<!-- 📊 PV RESULT -->
+<!-- ================================= -->
+<div id="output"
+     class="result">
+    Result will show here
 </div>
-
-</div>
-
-<div id="output" class="result">
-Result will show here
-</div>
-
-</div>
-
+<!-- ================================= -->
+<!-- 📱 BOTTOM MENU -->
+<!-- ================================= -->
 <div class="menu">
-
-<a href="index.html">
-<div>
-☀️
-<br>
-Home
+    <a href="index.html">
+        <div>
+            ☀️
+            <br>
+            Home
+        </div>
+    </a>
+    <a href="design.html">
+        <div>
+            📐
+            <br>
+            Design
+        </div>
+    </a>
+    <a href="battery.html">
+        <div>
+            🔋
+            <br>
+            Battery
+        </div>
+    </a>
+    <a href="setting.html">
+        <div>
+            ⚙️
+            <br>
+            Setting
+        </div>
+    </a>
 </div>
-</a>
-
-<a href="design.html">
-<div>
-📐
-<br>
-Design
-</div>
-</a>
-
-<a href="battery.html">
-<div>
-🔋
-<br>
-Battery
-</div>
-</a>
-
-<a href="setting.html">
-<div>
-⚙️
-<br>
-Setting
-</div>
-</a>
-
-</div>
-
+<!-- ================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================= -->
 <script src="script.js"></script>
-
 </body>
 </html>
