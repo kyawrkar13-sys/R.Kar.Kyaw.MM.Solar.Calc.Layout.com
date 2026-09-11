@@ -136,7 +136,7 @@ Math.floor(usableW/PL);
         site.appendChild(panel);
 
     }
-    [ 12 September 2026 04:32 ] ⁨Rkar Kyaw⁩: // Total Load (kW)
+ Total Load (kW)
 let totalLoad = Number(
     document.getElementById("totalLoad").value
 );
