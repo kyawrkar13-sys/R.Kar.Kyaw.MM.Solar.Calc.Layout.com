@@ -125,10 +125,6 @@ let hour =
 Number(document.getElementById("hour").value);
 
 
-let voltage =
-Number(document.getElementById("voltage").value);
-
-
 let dod =
 Number(document.getElementById("dod").value);
 
@@ -142,9 +138,6 @@ let battery =
 energy / (dod/100);
 
 
-
-let current =
-(battery*1000)/voltage;
 
 
 
@@ -180,17 +173,7 @@ ${battery.toFixed(2)} kWh
 <br><br>
 
 
-Battery Voltage :
-${voltage} V
-
-
 <br>
-
-
-Approx Battery Current :
-
-${current.toFixed(1)} Ah
-
 
 `;
 
