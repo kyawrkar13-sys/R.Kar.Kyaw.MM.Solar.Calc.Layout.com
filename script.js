@@ -136,6 +136,64 @@ Math.floor(usableW/PL);
         site.appendChild(panel);
 
     }
+    [ 12 September 2026 04:32 ] ⁨Rkar Kyaw⁩: // Total Load (kW)
+let totalLoad = Number(
+    document.getElementById("totalLoad").value
+);
+
+// Solar Panel Watt
+let solarWatt = Number(
+    document.getElementById("solarWatt").value
+);
+
+// Efficiency
+let efficiency = Number(
+    document.getElementById("solarEfficiency").value
+);
+
+// Check input
+if(totalLoad <= 0 || solarWatt <= 0){
+    document.getElementById("solarOutput").innerHTML = `
+        <b>⚠️ Please enter valid values.</b>
+    `;
+    return;
+}
+
+// Full Load calculation
+let fullLoad = totalLoad / (solarWatt / 1000) / efficiency;
+
+// Add 30% charging margin
+let chargingLoad = fullLoad * 1.30;
+
+document.getElementById("solarOutput").innerHTML = `
+
+    <b>☀️ Solar Rough Calculation</b>
+    <br><br>
+
+    Total Load :
+    <b>${totalLoad.toFixed(2)} kW</b>
+
+    <br>
+
+    Solar Watt :
+    <b>${solarWatt} W</b>
+
+    <br>
+
+    Efficiency :
+    <b>${(efficiency * 100).toFixed(0)}%</b>
+
+    <br><br>
+
+    Full Load :
+    <b>${fullLoad.toFixed(2)} kW</b>
+
+    <br><br>
+
+    Charging Load (+30%) :
+    <b>${chargingLoad.toFixed(2)} kW</b>
+
+`;
 
 
 
