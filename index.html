@@ -13,41 +13,54 @@
 </head>
 
 <body>
-
+<!-- ☀️ Solar Rough Calculation -->
 <div class="card">
-<div class="header">
 
-<img src="logo.png">
-<h2>🧮Rkar Kyaw's Calculator</h2>
+    <div class="header">
+        <img src="logo.png">
+        <h2>☀️ Solar Rough Calculation</h2>
+    </div>
+
+    <label>Total Load (kW)</label>
+    <input
+        type="number"
+        id="totalLoad"
+        placeholder="Enter total load"
+        step="0.01"
+    >
+
+    <label>Solar Panel Watt</label>
+    <select id="solarWatt">
+        <option value="615">615 W</option>
+        <option value="650" selected>650 W</option>
+        <option value="700">700 W</option>
+        <option value="720">720 W</option>
+        <option value="750">750 W</option>
+    </select>
+
+    <label>Efficiency</label>
+    <select id="solarEfficiency">
+        <option value="0.80" selected>80%</option>
+        <option value="0.70">70%</option>
+    </select>
+
+    <button onclick="solarRoughCalculate()">
+        ☀️ Calculate
+    </button>
+
+    <div id="solarOutput" class="result">
+        Solar result will show here
+    </div>
+
 </div>
-<h2>☀️ Solar Rough Calculation</h2>
-<label>Total Load (kW)</label>
-<input
-    type="number"
-    id="totalLoad"
-    placeholder="Enter total load"
-    step="0.01"
->
-<label>Solar Panel Watt</label>
-<select id="solarWatt">
-    <option value="615">615 W</option>
-    <option value="650" selected>650 W</option>
-    <option value="700">700 W</option>
-    <option value="720">720 W</option>
-    <option value="750">750 W</option>
-</select>
-<label>Efficiency</label>
-<select id="solarEfficiency">
-    <option value="0.80" selected>80%</option>
-    <option value="0.70">70%</option>
-</select>
-<button onclick="solarRoughCalculate()">
-    ☀️ Calculate
-</button>
-<hr>
-<div id="solarOutput">
-    Solar result will show here
-</div>
+
+
+<!-- 📐 PV Layout Calculator -->
+<div class="card">
+
+    <div class="header">
+        <img src="logo.png">
+        <h2>🧮 Rkar Kyaw's Solar Calculation</h2>
 </div>
     <label>Site Length (m)</label>
 <input type="number" id="length" placeholder=" ">
