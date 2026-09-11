@@ -136,36 +136,6 @@ Math.floor(usableW/PL);
         site.appendChild(panel);
 
     }
- Total Load (kW)
-let totalLoad = Number(
-    document.getElementById("totalLoad").value
-);
-
-// Solar Panel Watt
-let solarWatt = Number(
-    document.getElementById("solarWatt").value
-);
-
-// Efficiency
-let efficiency = Number(
-    document.getElementById("solarEfficiency").value
-);
-
-// Check input
-if(totalLoad <= 0 || solarWatt <= 0){
-    document.getElementById("solarOutput").innerHTML = `
-        <b>⚠️ Please enter valid values.</b>
-    `;
-    return;
-}
-
-// Full Load calculation
-let fullLoad = totalLoad / (solarWatt / 1000) / efficiency;
-
-// Add 30% charging margin
-let chargingLoad = fullLoad * 1.30;
-
-document.getElementById("solarOutput").innerHTML = `
 
     <b>☀️ Solar Rough Calculation</b>
     <br><br>
