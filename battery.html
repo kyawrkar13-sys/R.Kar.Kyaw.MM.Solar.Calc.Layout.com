@@ -1,191 +1,189 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 <title>Battery Design</title>
-
-<link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet"
+      href="style.css">
 </head>
-
-
 <body>
-
-
+<!-- 🔋 BATTERY DESIGN -->
 <div class="card">
-<div class="header">
-
-<img src="logo.png">
-
-<h2>🔋 Battery Design</h2>
-
-
-<label>Load Power (kW)</label>
-<input 
-id="load"
-type="number"
-value=" ">
-
-
-<label>Backup Time (Hour)</label>
-<input 
-id="hour"
-type="number"
-value=" ">
-
-<label>
-Battery DoD (%)
-</label>
-
-<input 
-id="dod"
-type="number"
-value="90">
-
-
-
-<button onclick="batteryCalc()">
-
-Calculate Battery
-
-</button>
-
-
-
-<div class="result" id="batteryResult">
-
-Battery Result
-
+    <div class="header">
+        <img src="logo.png">
+        <h2>🔋 Battery Design</h2>
+    </div>
+    <label>
+        Load Power (kW)
+    </label>
+    <input
+        id="load"
+        type="number"
+        placeholder="Enter load"
+        step="0.01"
+    >
+    <label>
+        Backup Time (Hour)
+    </label>
+    <input
+        id="hour"
+        type="number"
+        placeholder="Enter backup hour"
+        step="0.1"
+    >
+    <label>
+        Battery DoD (%)
+    </label>
+    <input
+        id="dod"
+        type="number"
+        value="90"
+        min="1"
+        max="100"
+    >
+    <button onclick="batteryCalc()">
+        🔋 Calculate Battery
+    </button>
+    <div
+        class="result"
+        id="batteryResult">
+        Battery Result
+    </div>
 </div>
-
-
-</div>
-
-
-
+<!-- 📱 BOTTOM MENU -->
 <div class="menu">
-
-
-<a href="index.html">
-<div>
-☀️
-<br>
-Home
+    <a href="index.html">
+        <div>
+            ☀️
+            <br>
+            Home
+        </div>
+    </a>
+    <a href="design.html">
+        <div>
+            📐
+            <br>
+            Design
+        </div>
+    </a>
+    <a href="battery.html">
+        <div>
+            🔋
+            <br>
+            Battery
+        </div>
+    </a>
+    <a href="setting.html">
+        <div>
+            ⚙️
+            <br>
+            Setting
+        </div>
+    </a>
 </div>
-</a>
-
-
-<a href="design.html">
-<div>
-📐
-<br>
-Design
-</div>
-</a>
-
-
-<a href="battery.html">
-<div>
-🔋
-<br>
-Battery
-</div>
-</a>
-
-
-<a href="setting.html">
-<div>
-⚙️
-<br>
-Setting
-</div>
-</a>
-
-
-</div>
-
-
-
-
 <script>
-
-
-function batteryCalc(){
-
-
-let load =
-Number(document.getElementById("load").value);
-
-
-let hour =
-Number(document.getElementById("hour").value);
-
-
-let dod =
-Number(document.getElementById("dod").value);
-
-
-
-let energy =
-load * hour;
-
-
-let battery =
-energy / (dod/100);
-
-
-
-
-
-document.getElementById("batteryResult").innerHTML = `
-
-
-<b>🔋 Battery Result</b>
-
-<br><br>
-
-
-Load :
-${load} kW
-
-
-<br>
-
-
-Backup Time :
-${hour} Hour
-
-
-<br><br>
-
-
-Required Battery Energy :
-
-<b>
-${battery.toFixed(2)} kWh
-</b>
-
-
-<br><br>
-
-
-<br>
-
-`;
-
-
+function batteryCalc() {
+    let load =
+        Number(
+            document.getElementById("load").value
+        );
+    let hour =
+        Number(
+            document.getElementById("hour").value
+        );
+    let dod =
+        Number(
+            document.getElementById("dod").value
+        );
+    let result =
+        document.getElementById("batteryResult");
+    // =========================
+    // CHECK INPUT
+    // =========================
+    if (load <= 0) {
+        result.innerHTML = `
+            <b>⚠️ Please enter Load Power.</b>
+        `;
+        return;
+    }
+    if (hour <= 0) {
+        result.innerHTML = `
+            <b>⚠️ Please enter Backup Time.</b>
+        `;
+        return;
+    }
+    if (dod <= 0 || dod > 100) {
+        result.innerHTML = `
+            <b>⚠️ Battery DoD must be between 1% and 100%.</b>
+        `;
+        return;
+    }
+    // =========================
+    // BATTERY ENERGY
+    // =========================
+    let energy =
+        load * hour;
+    // Required battery considering DoD
+    let requiredBattery =
+        energy / (dod / 100);
+    // =========================
+    // 9 kWh BATTERY
+    // =========================
+    let battery9 =
+        Math.ceil(
+            requiredBattery / 9
+        );
+    let total9 =
+        battery9 * 9;
+    // =========================
+    // 12 kWh BATTERY
+    // =========================
+    let battery12 =
+        Math.ceil(
+            requiredBattery / 12
+        );
+    let total12 =
+        battery12 * 12;
+    // =========================
+    // SHOW RESULT
+    // =========================
+    result.innerHTML = `
+        <b>🔋 Battery Result</b>
+        <br><br>
+        Load :
+        <b>${load.toFixed(2)} kW</b>
+        <br>
+        Backup Time :
+        <b>${hour.toFixed(1)} Hour</b>
+        <br>
+        Battery DoD :
+        <b>${dod.toFixed(0)}%</b>
+        <br><br>
+        Required Energy :
+        <b>${energy.toFixed(2)} kWh</b>
+        <br><br>
+        Required Battery :
+        <b>${requiredBattery.toFixed(2)} kWh</b>
+        <hr>
+        🔋 <b>9 kWh Battery</b>
+        <br><br>
+        Battery Qty :
+        <b>${battery9} pcs</b>
+        <br>
+        Total Capacity :
+        <b>${total9.toFixed(2)} kWh</b>
+        <br><br>
+        🔋 <b>12 kWh Battery</b>
+        <br><br>
+        Battery Qty :
+        <b>${battery12} pcs</b>
+        <br>
+        Total Capacity :
+        <b>${total12.toFixed(2)} kWh</b>
+    `;
 }
-
-
-
 </script>
-
-
-
 </body>
-
 </html>
