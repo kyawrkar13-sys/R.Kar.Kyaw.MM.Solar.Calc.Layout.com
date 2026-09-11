@@ -269,3 +269,61 @@ function solarRoughCalculate() {
 
     `;
 }
+document.getElementById("solarCalculateBtn").addEventListener("click", function () {
+
+    let totalLoad = Number(
+        document.getElementById("totalLoad").value
+    );
+
+    let solarWatt = Number(
+        document.getElementById("solarWatt").value
+    );
+
+    let efficiency = Number(
+        document.getElementById("solarEfficiency").value
+    );
+
+    let output = document.getElementById("solarOutput");
+
+    if (totalLoad <= 0) {
+        output.innerHTML = "⚠️ Please enter Total Load.";
+        return;
+    }
+
+    let solarKW = solarWatt / 1000;
+
+    let fullLoad =
+        totalLoad / solarKW / efficiency;
+
+    let chargingLoad =
+        fullLoad * 1.30;
+
+    output.innerHTML = `
+        <b>☀️ Solar Rough Result</b>
+        <br><br>
+
+        Total Load :
+        <b>${totalLoad.toFixed(2)} kW</b>
+
+        <br>
+
+        Solar Watt :
+        <b>${solarWatt} W</b>
+
+        <br>
+
+        Efficiency :
+        <b>${(efficiency * 100).toFixed(0)}%</b>
+
+        <br><br>
+
+        Full Load :
+        <b>${fullLoad.toFixed(2)} kW</b>
+
+        <br><br>
+
+        Charging Load (+30%) :
+        <b>${chargingLoad.toFixed(2)} kW</b>
+    `;
+
+});
