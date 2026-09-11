@@ -10,7 +10,7 @@ function calculate(){
     let PW = Number(document.getElementById("pw").value);
 
     let RS = Number(document.getElementById("row").value);
-    let WW = Number(document.getElementById("walk").value);
+    let WW = Number(document.getElementById("column").value);
 
 
     let usableL = L - (SB * 2);
@@ -224,4 +224,78 @@ document.getElementById("solarOutput").innerHTML = `
 
     `;
 
+}
+function solarRoughCalculate() {
+
+    let totalLoad = Number(
+        document.getElementById("totalLoad").value
+    );
+
+    let solarWatt = Number(
+        document.getElementById("solarWatt").value
+    );
+
+    let efficiency = Number(
+        document.getElementById("solarEfficiency").value
+    );
+
+    let output = document.getElementById("solarOutput");
+
+
+    // Check input
+    if (!totalLoad || totalLoad <= 0) {
+
+        output.innerHTML = `
+            <b>⚠️ Please enter Total Load.</b>
+        `;
+
+        return;
+    }
+
+
+    // Solar Watt → kW
+    let solarKW = solarWatt / 1000;
+
+
+    // Full Load
+    let fullLoad =
+        totalLoad / solarKW / efficiency;
+
+
+    // Add 30%
+    let chargingLoad =
+        fullLoad * 1.30;
+
+
+    // Result
+    output.innerHTML = `
+
+        <b>☀️ Solar Rough Result</b>
+
+        <br><br>
+
+        Total Load :
+        <b>${totalLoad.toFixed(2)} kW</b>
+
+        <br>
+
+        Solar Watt :
+        <b>${solarWatt} W</b>
+
+        <br>
+
+        Efficiency :
+        <b>${(efficiency * 100).toFixed(0)}%</b>
+
+        <br><br>
+
+        Full Load :
+        <b>${fullLoad.toFixed(2)} kW</b>
+
+        <br><br>
+
+        Charging Load (+30%) :
+        <b>${chargingLoad.toFixed(2)} kW</b>
+
+    `;
 }
